@@ -20,3 +20,5 @@
 //Routes
 //Pages
 //Components
+
+//HOC (Higher Order Components)
