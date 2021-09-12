@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import HeroSlider from "react-slick";
 
 // Import css files
@@ -6,7 +6,55 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const HeroCarousal = () => {
+  const settingsLG = {
+    arrows: true,
+    autoplay: true,
+    centerMode: true,
+    centerPadding: "300px",
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    infinite: true,
+  };
+  const settings = {
+    arrows: true,
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
 
+  const images = [
+    "https://images.unsplash.com/photo-1444076784383-69ff7bae1b0a?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1554768707-a66bcfe69e89?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8NnNNVmpUTFNrZVF8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1581337377333-904020186445?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDl8NnNNVmpUTFNrZVF8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1630702379394-e202e2fbe01e?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDU3fDZzTVZqVExTa2VRfHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1533079047304-3997643590ab?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDgwfDZzTVZqVExTa2VRfHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1496815179167-7bed3ba04811?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDg1fDZzTVZqVExTa2VRfHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+  ];
+  return (
+    <>
+      <div className="lg:hidden">
+        <HeroSlider {...settings}>
+          {images.map((image) => (
+            <div className="w-full h-44 md:h-80 py-3">
+              <img src={image} alt="testing" className="w-full h-full rounded-md" />
+            </div>
+          ))}
+        </HeroSlider>
+      </div>
+
+      <div className="hidden lg:block">
+        <HeroSlider {...settingsLG}>
+          {images.map((image) => (
+            <div className="w-full h-96 px-2 py-3">
+              <img src={image} alt="testing" className="w-full h-full rounded-md" />
+            </div>
+          ))}
+        </HeroSlider>
+      </div>
+    </>
+  );
 };
 
 export default HeroCarousal;

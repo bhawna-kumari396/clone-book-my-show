@@ -37,9 +37,9 @@ const NavLg = () => {
     <>
       <div className="container mx-auto px-4 flex item-center justify-between">
         <div className="flex item-center w-1/2 gap-3">
-          <div className="w-24 h-12">
+          <div className="w-28 h-12">
             <img
-              src="https://o.remove.bg/downloads/b8ba83d0-f147-4ea3-aeea-fb715bb56067/image-removebg-preview.png"
+              src="https://logodix.com/logo/2011120.jpg"
               alt="logo"
               className="w-full h-full"
             />
