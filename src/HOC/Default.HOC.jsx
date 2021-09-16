@@ -12,7 +12,7 @@ const DefaultHOC = ({ component: Component, ...rest }) => {
         {...rest}
         component={(props) => (
           <DefaultLayout>
-            <component {...props} />
+            <Component {...props} />
           </DefaultLayout>
         )}
       />
@@ -20,3 +20,4 @@ const DefaultHOC = ({ component: Component, ...rest }) => {
   );
 };
 export default DefaultHOC;
+
