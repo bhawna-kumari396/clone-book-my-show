@@ -8,7 +8,7 @@ const Movie = () => {
         <MovieHero />
           
         </>
-    )
+    );
 };
 
 export default Movie;
