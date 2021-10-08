@@ -11,6 +11,8 @@ import PosterCaroselSettings from "../../config/PosterCarosel.config";
 //import PremierImages from "../../config/TempPosters.config";
 
 const PosterSlider = (props) => {
+
+  const sliderConfig = props.config ? props.config : PosterCaroselSettings;
   return (
     <>
       <div className="flex flex-col items-start my-2">
@@ -26,7 +28,7 @@ const PosterSlider = (props) => {
           }`}>{props.subtitle}</p>
       </div>
 
-      <Slider {...PosterCaroselSettings}>
+      <Slider { ...sliderConfig}>
         {props.images.map((image) => (
           <Poster {...image} isDark={props.isDark} />
         ))}

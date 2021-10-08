@@ -3,8 +3,50 @@ import { FaCcVisa, FaCcApplePay } from "react-icons/fa";
 //component
 import MovieHero from "../components/MovieHero/MovieHero.component";
 import Cast from "../components/Cast/Cast.component";
+import PosterSlider from "../components/PosterSlider/PosterSlider.component";
+
+//config
+import TempPosters from "../config/TempPosters.config";
 
 const Movie = () => {
+
+
+  const settings = {
+    infinite: false,
+    autoplay: false,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    InitialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          InitialSlide: 2,
+        },
+      },
+      {
+        breakpoints: 480,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  
+  
+
   return (
     <>
       <MovieHero />
@@ -71,7 +113,7 @@ const Movie = () => {
 
         {/*---------------------------------------------------------------------------------- */}
 
-        
+
         <div className="my-8">
         <h2 className="text-gray-800 font-bold text-2xl mb-8">Cast & Crew</h2>
 
@@ -105,6 +147,26 @@ const Movie = () => {
         </div>
         <div className="my-8">
           <hr />
+        </div>
+
+{/*------------------------------------------------------------------------------------------ */}
+
+
+        <div className="my-8">
+        <PosterSlider
+        config={settings}
+          images={TempPosters}
+          title="You Might Also Like"
+          isDark={false}
+        />
+        </div>
+        <div className="my-8">
+        <PosterSlider
+        config={settings}
+          images={TempPosters}
+          title="BMS Xclusive"
+          isDark={false}
+        />
         </div>
       </div>
     </>
