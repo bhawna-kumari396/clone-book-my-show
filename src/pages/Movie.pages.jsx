@@ -1,6 +1,8 @@
 import { FaCcVisa, FaCcApplePay } from "react-icons/fa";
 
+//component
 import MovieHero from "../components/MovieHero/MovieHero.component";
+import Cast from "../components/Cast/Cast.component";
 
 const Movie = () => {
   return (
@@ -60,6 +62,49 @@ const Movie = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        
+        <div className="my-8">
+          <hr />
+        </div>
+
+        {/*---------------------------------------------------------------------------------- */}
+
+        
+        <div className="my-8">
+        <h2 className="text-gray-800 font-bold text-2xl mb-8">Cast & Crew</h2>
+
+        <div className="flex flex-wrap gap-4 justify-center">
+          <Cast
+            image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/ryan-masson-2010831-11-01-2021-07-38-30.jpg"
+            castName="Henry Cavil"
+            role="Issac"
+          />
+          <Cast
+            image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/highdee-kuan-2010832-11-01-2021-07-39-44.jpg"
+            castName="Highdy Kuan"
+            role="Sara"
+          />
+          <Cast
+            image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/christian-prentice-2011263-11-01-2021-07-42-14.jpg"
+            castName="Christian Prentice"
+            role="Zed"
+          />
+          <Cast
+            image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/eric-demeusy-2010833-11-01-2021-07-43-30.jpg"
+            castName="Eric Demeusy"
+            role="Director"
+          />
+          <Cast
+            image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/junkie-xl-1043901-09-03-2018-03-36-05.jpg"
+            castName="Junkie XL"
+            role="Musicien"
+          />
+        </div>
+        </div>
+        <div className="my-8">
+          <hr />
         </div>
       </div>
     </>
