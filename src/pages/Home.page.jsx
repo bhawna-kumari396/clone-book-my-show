@@ -1,5 +1,6 @@
 import React from "react";
 
+
 //component
 import EntertainmentCardSlider from "../components/Entertainment/Entertainmentcard.component";
 import PosterSlider from "../components/PosterSlider/PosterSlider.component";
