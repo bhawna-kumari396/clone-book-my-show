@@ -6,6 +6,8 @@ import {
   BiMenu,
   BiShareAlt,
 } from "react-icons/bi";
+
+//context
 import { MovieContext } from "../../context/movie.context";
 
 

@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 //components
 import MovieNavbar from "../components/Navbar/movieNavbar.component";
 
+
+
 // context
 import { MovieContext } from "../context/movie.context";
 
@@ -23,7 +25,7 @@ const MovieLayout = (props) => {
     requestMovie();
 
     
-  }, []);
+  }, [id]);
 
   return (
     <>

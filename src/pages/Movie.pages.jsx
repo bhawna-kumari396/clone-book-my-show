@@ -1,4 +1,8 @@
 import { FaCcVisa, FaCcApplePay } from "react-icons/fa";
+import React, { useContext, useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router";
+import Slider from "react-slick";
 
 //component
 import MovieHero from "../components/MovieHero/MovieHero.component";
@@ -8,7 +12,48 @@ import PosterSlider from "../components/PosterSlider/PosterSlider.component";
 //config
 import TempPosters from "../config/TempPosters.config";
 
+//context
+
+import { MovieContext } from "../context/movie.context";
+
+
+
+
+
 const Movie = () => {
+const { id } = useParams();
+  const { movie } = useContext(MovieContext);
+  const [cast, setCast] = useState([]);
+  const [similarMovies, setSimilarMovies] = useState([]);
+  const [recommended, setRecommended] = useState([]);
+
+
+
+  useEffect(() => {
+    const requestCast = async() => {
+      const getCast = await axios.get(`/movie/${id}/credits`);
+      setCast(getCast.data.cast);
+
+    };
+
+    requestCast();
+  }, [id]);
+
+  useEffect(() => {
+    const requestSimilarMovies = async () => {
+      const getSimilarMovies = await axios.get(`/movie/${id}/similar`);
+      setSimilarMovies(getSimilarMovies.data.results);
+    };
+    requestSimilarMovies();
+  }, [id]);
+
+  useEffect(() => {
+    const requestRecommendedMovies = async () => {
+      const getRecommendedMovies = await axios.get(`/movie/${id}/recommendations`);
+      setRecommended(getRecommendedMovies.data.results);
+    };
+    requestRecommendedMovies();
+  }, [id]);
 
 
   const settings = {
@@ -44,6 +89,39 @@ const Movie = () => {
     ],
   };
 
+  const settingsCast = {
+    infinite: false,
+    autoplay: false,
+    slidesToShow: 6,
+    slidesToScroll: 4,
+    InitialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 3,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 2,
+          InitialSlide: 2,
+        },
+      },
+      {
+        breakpoints: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   
   
 
@@ -54,9 +132,7 @@ const Movie = () => {
         <div className="flex flex-col item-start gap-3">
           <h2 className="text-gray-800 font-bold text-2xl">About The Movie</h2>
           <p>
-            A young NASA JPL scientist is abducted by extraterrestrials but when
-            no one believes his story he becomes obsessed with finding proof
-            which leads him on a journey of discovery.
+            {movie.overview}
           </p>
         </div>
         <div className="my-8">
@@ -117,33 +193,18 @@ const Movie = () => {
         <div className="my-8">
         <h2 className="text-gray-800 font-bold text-2xl mb-8">Cast & Crew</h2>
 
-        <div className="flex flex-wrap gap-4 justify-center">
-          <Cast
-            image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/ryan-masson-2010831-11-01-2021-07-38-30.jpg"
-            castName="Henry Cavil"
-            role="Issac"
+        
+          <Slider {...settingsCast}>
+          {cast.map((castdata) => (
+            <Cast
+            image={`https://image.tmdb.org/t/p/original/${castdata.profile_path}`}
+            castName={castdata.original_name}
+            role={castdata.character}
           />
-          <Cast
-            image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/highdee-kuan-2010832-11-01-2021-07-39-44.jpg"
-            castName="Highdy Kuan"
-            role="Sara"
-          />
-          <Cast
-            image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/christian-prentice-2011263-11-01-2021-07-42-14.jpg"
-            castName="Christian Prentice"
-            role="Zed"
-          />
-          <Cast
-            image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/eric-demeusy-2010833-11-01-2021-07-43-30.jpg"
-            castName="Eric Demeusy"
-            role="Director"
-          />
-          <Cast
-            image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/junkie-xl-1043901-09-03-2018-03-36-05.jpg"
-            castName="Junkie XL"
-            role="Musicien"
-          />
-        </div>
+          ))}
+          </Slider>
+        
+
         </div>
         <div className="my-8">
           <hr />
@@ -155,7 +216,7 @@ const Movie = () => {
         <div className="my-8">
         <PosterSlider
         config={settings}
-          images={TempPosters}
+          images={similarMovies}
           title="You Might Also Like"
           isDark={false}
         />
@@ -163,7 +224,7 @@ const Movie = () => {
         <div className="my-8">
         <PosterSlider
         config={settings}
-          images={TempPosters}
+          images={recommended}
           title="BMS Xclusive"
           isDark={false}
         />
